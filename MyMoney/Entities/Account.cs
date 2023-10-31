@@ -13,7 +13,7 @@ public class Account
 	public string CurrencyCode { get; set; } = null!;
 
 	[StringLength(500)]
-	public string Description { get; set; } = null!;
+	public string? Description { get; set; }
 
 
 	public virtual User Owner { get; set; } = null!;

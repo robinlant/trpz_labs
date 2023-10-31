@@ -15,6 +15,13 @@ public class MoneyContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
+		//REPEATING TRANSACTION
+		modelBuilder.Entity<Transaction>()
+			.HasOne(i => i.RepeatingTransaction)
+			.WithMany(a => a.Transactions)
+			.OnDelete(DeleteBehavior.SetNull);
+
+		//INVITE
 		modelBuilder.Entity<Invite>()
 			.HasOne(i => i.Account)
 			.WithMany(a => a.Invites)

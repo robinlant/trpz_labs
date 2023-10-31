@@ -1,13 +1,9 @@
-
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyMoney.Entities;
 
-
-
-public class Transaction
+public class RepeatingTransaction
 {
 	public int Id { get; set; }
 
@@ -20,7 +16,11 @@ public class Transaction
 	[Column(TypeName = "decimal(18,2)")]
 	public decimal Amount { get; set; }
 
-	public DateTime Date { get; set; }
+	public Frequency Frequency { get; set; }
+
+	public DateTime StartDate { get; set; }
+
+	public DateTime? EndDate { get; set; }
 
 	public TransactionType Type { get; set; }
 
@@ -28,7 +28,7 @@ public class Transaction
 
 	public IncomeCategory? IncomeCategory { get; set; }
 
-	public virtual RepeatingTransaction RepeatingTransaction { get; set; } = null!;
 	public virtual User MadeBy { get; set; } = null!;
 	public virtual Account Account { get; set; } = null!;
+	public virtual List<Transaction> Transactions { get; set; } = new List<Transaction>();
 }
