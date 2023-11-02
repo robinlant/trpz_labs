@@ -17,6 +17,8 @@ public class Account
 	[StringLength(500)]
 	public string? Description { get; set; }
 
+	public DateTime CreationDate { get; set; }
+
 	[Required]
 	public virtual User Owner { get; set; } = null!;
 

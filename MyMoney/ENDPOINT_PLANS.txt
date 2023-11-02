@@ -1,0 +1,59 @@
+Users:
+
+    GET /api/users/me (Get current user details)
+
+Accounts: (AccountDtos)
+
+    POST /api/accounts (Create a new account)
+    GET /api/accounts (Retrieve all accounts)
+    GET /api/accounts/{accountId} (Retrieve specific account)
+    PUT /api/accounts/{accountId} (Update specific account)
+    DELETE /api/accounts/{accountId} (Delete specific account)
+
+Invites:
+
+    POST /api/accounts/{accountId}/invites (Send an invite)
+    GET /api/accounts/{accountId}/invites (Retrieve all invites from an account)
+    POST /api/invites/{inviteId}/accept (Accept an invite)
+
+Transactions:
+
+    POST /api/accounts/{accountId}/transactions (Create a transaction)
+    GET /api/accounts/{accountId}/transactions (Retrieve all transactions)
+    GET /api/accounts/{accountId}/transactions/{transactionId} (Retrieve specific transaction)
+    PUT /api/accounts/{accountId}/transactions/{transactionId} (Update specific transaction)
+    DELETE /api/accounts/{accountId}/transactions/{transactionId} (Delete specific transaction)
+
+Repeating Transactions:
+
+    POST /api/accounts/{accountId}/repeating-transactions (Create a repeating transaction)
+    GET /api/accounts/{accountId}/repeating-transactions (Retrieve all repeating transactions)
+    GET /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Retrieve specific repeating transaction)
+    PUT /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Update specific repeating transaction)
+    DELETE /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Delete specific repeating transaction)
+
+User Access:
+
+    GET /api/accounts/{accountId}/users (Retrieve all users with access to an account)
+    DELETE /api/accounts/{accountId}/users/{userId} (Revoke a user's access)
+
+Categories:
+
+    POST /api/categories (Create a category)
+    GET /api/categories (Retrieve all categories)
+    PUT /api/categories/{categoryId} (Update a category)
+    DELETE /api/categories/{categoryId} (Delete a category)
+
+Reports:
+
+    GET /api/accounts/{accountId}/reports/monthly (Get monthly summary)
+    GET /api/accounts/{accountId}/reports/yearly (Get yearly summary)
+
+Notifications:
+
+    GET /api/notifications (Retrieve all notifications)
+    PUT /api/notifications/{notificationId}/mark-as-read (Mark notification as read)
+
+Search:
+
+    GET /api/accounts/{accountId}/transactions/search?startDate=yyyy-mm-dd&endDate=yyyy-mm-dd&category={categoryId} (Search transactions)
