@@ -5,7 +5,7 @@ using MyMoney.Entities;
 
 namespace MyMoney.Dtos;
 
-public class UserAccess
+public class UserAccessDto
 {
 	[Required]
 	public UserRole Role { get; set; }

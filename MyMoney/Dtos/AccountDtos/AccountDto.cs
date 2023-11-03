@@ -15,7 +15,7 @@ public class AccountDto
 	public string CurrencyCode { get; set; } = null!;
 
 	[Required]
-	public string Role { get; set; } = null!;
+	public int OwnerId { get; set; }
 
 	[Required]
 	public DateTime CreationDate { get; set; }

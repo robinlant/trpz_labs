@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MyMoney.Dtos.UserDtos;
+namespace MyMoney.Dtos;
 
 public class UserDto
 {

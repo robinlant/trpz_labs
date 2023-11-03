@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using MyMoney.Helpers.CustomAttributes;
 
-namespace MyMoney.Dtos.UserDtos;
+namespace MyMoney.Dtos;
 
 public class UpdateUserDto
 {
