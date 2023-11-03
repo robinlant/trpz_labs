@@ -1,19 +1,18 @@
 using System.ComponentModel.DataAnnotations;
 using MyMoney.Helpers.CustomAttributes;
 
-namespace MyMoney.Dtos.AccountDtos;
+namespace MyMoney.Dtos;
 
 public class CreateAccountDto
 {
 	[Required]
 	[StringLength(50)]
 	[NoWhitespaceOnly]
-	public string Name { get; set; }
+	public string Name { get; set; } = null!;
 
-	[Required]
 	[StringLength(3, MinimumLength = 3)]
 	[NoWhitespaceOnly]
-	public string CurrencyCode { get; set; }
+	public string? CurrencyCode { get; set; }
 
 	[StringLength(500)]
 	[NoWhitespaceOnly]

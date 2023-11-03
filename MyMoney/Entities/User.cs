@@ -18,7 +18,7 @@
 		public string Password { get; set; } = null!;
 
 		[Required]
-		public DateTime DateOfJoin { get; set; }
+		public DateTime JoinDate { get; set; }
 
 		[Required]
 		[StringLength(3)]

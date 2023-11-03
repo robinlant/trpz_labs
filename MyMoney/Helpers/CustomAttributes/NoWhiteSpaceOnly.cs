@@ -6,9 +6,11 @@ public class NoWhitespaceOnly : ValidationAttribute
 {
 	protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
 	{
+		var ERR_MSG = "The field cannot contain only whitespace.";
+
 		if (value is string stringValue && string.IsNullOrWhiteSpace(stringValue))
 		{
-			return new ValidationResult("The field cannot contain only whitespace.");
+			return new ValidationResult(ERR_MSG);
 		}
 		return ValidationResult.Success;
 	}

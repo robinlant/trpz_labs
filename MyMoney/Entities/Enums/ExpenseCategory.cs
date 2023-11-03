@@ -2,7 +2,6 @@ namespace MyMoney.Entities;
 
 public enum ExpenseCategory
 {
-	NoCategory = 0,
 	Auto,
 	Charity,
 	BudgetAndTaxes,

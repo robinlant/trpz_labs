@@ -2,7 +2,6 @@ namespace MyMoney.Entities;
 
 public enum IncomeCategory
 {
-	NoCategory = 0,
 	Salary,
 	BusinessRevenue,
 	InvestmentsReturns,

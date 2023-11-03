@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyMoney.Data;
 using MyMoney.Entities;
+using MyMoney.Repositories.Interfaces;
 
 namespace MyMoney.Repositories;
 
@@ -20,6 +21,14 @@ public class UserAccessRepository : IUserAccessRepository
 			.SelectMany(a => a.UserAccesses)
 			.ToListAsync();
 	}
+
+	public async Task<UserAccess?> GetByUserIdAccountIdAsync(int userId, int accountId)
+	{
+		return await _dbContext.UserAccesses
+			.Where(ua => ua.User.Id == userId && ua.Account.Id == accountId)
+			.FirstOrDefaultAsync();
+	}
+
 
 	public async Task<List<UserAccess>> GetAllByUserIdAsync(int id)
 	{

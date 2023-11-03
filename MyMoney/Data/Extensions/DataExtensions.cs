@@ -33,4 +33,11 @@ public static class DataExtensions
 
 		return serviceCollection;
 	}
+
+	public static async Task InitializeDb(this IServiceProvider service)
+	{
+		using var scope = service.CreateScope();
+		var dbContext = scope.ServiceProvider.GetRequiredService<MoneyContext>();
+		await dbContext.Database.MigrateAsync();
+	}
 }

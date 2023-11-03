@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyMoney.Data;
 using MyMoney.Entities;
+using MyMoney.Repositories.Interfaces;
 
 namespace MyMoney.Repositories;
 

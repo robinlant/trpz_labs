@@ -22,6 +22,14 @@ public class TransactionRepository : ITransactionRepository
 			.ToListAsync();
 	}
 
+	public async Task<List<Transaction>> GetAllByRepTransactionIdAsync(int id)
+	{
+		return await _dbContext.RepeatingTransactions
+			.Where(a => a.Id == id)
+			.SelectMany(a => a.Transactions)
+			.ToListAsync();
+	}
+
 	public async Task<Transaction?> GetByIdAsync(int id)
 	{
 		return await _dbContext.Transactions.FindAsync(id);

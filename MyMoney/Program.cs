@@ -9,4 +9,6 @@ builder.Services.AddDbContext(builder.Configuration)
 
 var app = builder.Build();
 
+await app.Services.InitializeDb();
+
 app.Run();

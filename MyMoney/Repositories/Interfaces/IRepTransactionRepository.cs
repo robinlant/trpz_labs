@@ -1,6 +1,6 @@
 using MyMoney.Entities;
 
-namespace MyMoney.Repositories;
+namespace MyMoney.Repositories.Interfaces;
 
 public interface IRepTransactionRepository
 {
