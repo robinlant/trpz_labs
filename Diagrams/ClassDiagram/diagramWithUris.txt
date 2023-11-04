@@ -1,0 +1,60 @@
+@startuml
+
+class Users {
+    + Login() : POST /api/users/login
+    + CreateUser() : POST /api/users
+    + UpdateUser() : PUT /api/users/me
+    + RetrieveCurrentUserDetails() : GET /api/users/me
+    + DeleteUser(userId) : DELETE /api/users/{userId}
+}
+
+class Accounts {
+    + CreateAccount() : POST /api/accounts
+    + GetAllAccounts() : GET /api/accounts
+    + GetAccount(accountId) : GET /api/accounts/{accountId}
+    + UpdateAccount(accountId) : PUT /api/accounts/{accountId}
+    + DeleteAccount(accountId) : DELETE /api/accounts/{accountId}
+}
+
+class Invites {
+    + SendInvite(accountId) : POST /api/accounts/{accountId}/invites
+    + GetAccountInvites(accountId) : GET /api/accounts/{accountId}/invites
+    + GetInvite(inviteId) : GET /api/invites/{inviteId}
+    + GetAllSentInvites() : GET /api/invites
+    + DeleteSentInvite(inviteId) : DELETE /api/invites/{inviteId}
+    + RespondToInvite(inviteId) : POST /api/invites/{inviteId}
+}
+
+class Transactions {
+    + CreateTransaction(accountId) : POST /api/accounts/{accountId}/transactions
+    + GetAllTransactions(accountId) : GET /api/accounts/{accountId}/transactions
+    + GetTransaction(accountId, transactionId) : GET /api/accounts/{accountId}/transactions/{transactionId}
+    + UpdateTransaction(accountId, transactionId) : PUT /api/accounts/{accountId}/transactions/{transactionId}
+    + DeleteTransaction(accountId, transactionId) : DELETE /api/accounts/{accountId}/transactions/{transactionId}
+}
+
+class RepeatingTransactions {
+    + CreateRepeatingTransaction(accountId) : POST /api/accounts/{accountId}/repeating-transactions
+    + GetAllTransactionsForRepeatingTransaction(accountId, repeatingTransactionId) : GET /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId}/transactions
+    + GetAllRepeatingTransactions(accountId) : GET /api/accounts/{accountId}/repeating-transactions
+    + GetRepeatingTransaction(accountId, repeatingTransactionId) : GET /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId}
+    + UpdateRepeatingTransaction(accountId, repeatingTransactionId) : PUT /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId}
+    + DeleteRepeatingTransaction(accountId, repeatingTransactionId) : DELETE /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId}
+}
+
+class UserAccess {
+    + GetAllUsersForAccount(accountId) : GET /api/accounts/{accountId}/users
+    + UpdateUserRole(accountId, userId) : PUT /api/accounts/{accountId}/users/{userId}
+    + RevokeAccess(accountId, userId) : DELETE /api/accounts/{accountId}/users/{userId}
+}
+
+class Reports (In Transactions and accounts)  {
+    + GetMonthlyReport(accountId) : GET /api/accounts/{accountId}/reports/monthly
+    + GetYearlyReport(accountId) : GET /api/accounts/{accountId}/reports/yearly
+}
+
+class Search (In Transactions and accounts){
+    + SearchTransactions(accountId, startDate, endDate, category) : GET /api/accounts/{accountId}/transactions/search
+}
+
+@enduml

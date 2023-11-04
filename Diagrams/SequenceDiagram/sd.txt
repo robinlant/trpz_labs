@@ -1,0 +1,56 @@
+User Registration Process
+User Updating Account Details
+User Creating a New Transaction
+
+@startuml
+actor USER
+participant "User Front-End" as FE
+participant "AccountEndpoints" as AE
+participant "IAccountRepository" as AR
+participant "DB" as DB
+
+USER -> FE : Requests to update account
+FE -> AE : PUT /api/accounts/{accountId} (Update account)
+AE -> AR : UpdateAsync(updatedAccount)
+AR -> DB : Update account data
+DB -> AR : Confirmation
+AR -> AE : UpdateConfirmation
+AE -> FE : Response (Account update success)
+FE -> USER : Display update success
+@enduml
+
+@startuml
+actor USER
+participant "User Front-End" as FE
+participant "Auth Service" as AS
+participant "UserEndpoints" as UE
+participant "IUserRepository" as UR
+participant "DB" as DB
+
+USER -> FE : Fill in registration form
+FE -> UE : POST /api/users/register (Create new user)
+UE -> UR : CreateAsync(newUser)
+UR -> DB : Insert new user data
+DB -> UR : Confirmation
+UR -> UE : UserCreatedConfirmation
+UE -> AS : Response (User creation success with token)
+AS -> FE : Authenticate new user
+FE -> USER : Display confirmation
+@enduml
+
+@startuml
+actor USER
+participant "User Front-End" as FE
+participant "TransactionEndpoints" as TE
+participant "ITransactionRepository" as TR
+participant "DB" as DB
+
+USER -> FE : Initiate new transaction
+FE -> TE : POST /api/accounts/{accountId}/transactions (Create transaction)
+TE -> TR : CreateAsync(newTransaction)
+TR -> DB : Insert transaction data
+DB -> TR : Confirmation
+TR -> TE : TransactionCreatedConfirmation
+TE -> FE : Response (Transaction creation success)
+FE -> USER : Display transaction details
+@enduml

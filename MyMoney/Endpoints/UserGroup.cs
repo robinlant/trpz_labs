@@ -8,8 +8,6 @@ public static class UserGroup
 
 		var UserGroup = routes.MapGroup(route);
 
-		//here logic
-
 		return routes;
 	}
 }

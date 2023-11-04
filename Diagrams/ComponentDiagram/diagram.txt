@@ -1,0 +1,23 @@
+@startuml
+package "Front-End System" {
+  [User Front-End] as FrontEnd
+}
+
+package "Application Server" {
+  [AuthService]
+  [Endpoints]
+  [BusinessLogicLayer] as BLL
+  [DataLogicLayer] as DLL
+}
+
+database "External Database" {
+  [DB]
+}
+
+[FrontEnd] --> [AuthService] : Uses
+[AuthService] --> [Endpoints] : Validates & Forwards
+[Endpoints] --> [BLL] : Processes requests
+[BLL] --> [DLL] : Uses for Data Operations
+[DLL] --> [DB] : Reads/Writes data
+
+@enduml

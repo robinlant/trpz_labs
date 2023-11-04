@@ -6,12 +6,12 @@ public static class Endpoints
 	{
 		const string mainGroupUri = "/api";
 
-		var gamesGroup = routes.MapGroup(mainGroupUri)
+		var mainGroup = routes.MapGroup(mainGroupUri)
 			.WithParameterValidation();
 
-		gamesGroup.MapUserGroup();
+		mainGroup.MapUserGroup();
 		//... and other
 
-		return gamesGroup;
+		return mainGroup;
 	}
 }

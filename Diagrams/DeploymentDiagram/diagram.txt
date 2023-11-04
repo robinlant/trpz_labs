@@ -1,0 +1,31 @@
+@startuml
+
+package "User Device" {
+    [Web Browser]
+}
+
+cloud "Internet" {
+}
+
+node "Web Server" {
+    [Nginx]
+}
+
+node "Frontend Server" {
+    [Frontend Application]
+}
+
+node "Backend Server" {
+    [Money Application Backend]
+}
+
+database "Database Server" {
+    [PostgreSQL]
+}
+
+[Web Browser] --> [Nginx] : HTTP/HTTPS Request
+[Nginx] --> [Frontend Application] : Serve Frontend
+[Nginx] --> [Money Application Backend] : API Requests
+[Money Application Backend] --> [PostgreSQL] : DB Queries
+
+@enduml

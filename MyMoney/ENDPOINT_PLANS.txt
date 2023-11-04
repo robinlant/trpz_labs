@@ -1,5 +1,6 @@
 Users: (UserDtos)
 
+    POST /api/users/login (Login into an existing account)
     POST /api/users (Create a new user)
     PUT  /api/users/me (Update user)
     GET  /api/users/me (Retrieve current user details)
@@ -45,15 +46,11 @@ User Access: (UserAccessDtos)
     PUT /api/accounts/{accountId}/users/{userId} (Update user's role)
     DELETE /api/accounts/{accountId}/users/{userId} (Revoke a user's access)
 
-Categories: (no dto - static endpoint)
-
-    GET /api/transactions/categories (Retrieve all categories)
-
-Reports:(maybe add later)
+Reports:
 
     GET /api/accounts/{accountId}/reports/monthly (Get monthly summary)
     GET /api/accounts/{accountId}/reports/yearly (Get yearly summary)
 
-Search: (maybe add later)
+Search:
 
     GET /api/accounts/{accountId}/transactions/search?startDate=yyyy-mm-dd&endDate=yyyy-mm-dd&category={categoryId} (Search transactions)
