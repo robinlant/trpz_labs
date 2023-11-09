@@ -3,7 +3,7 @@ using MyMoney.Entities;
 
 namespace MyMoney.Dtos;
 
-public class UpdateUserAccessDto
+public record UpdateUserAccessDto
 {
 	[Required]
 	public UserRole Role { get; set; }

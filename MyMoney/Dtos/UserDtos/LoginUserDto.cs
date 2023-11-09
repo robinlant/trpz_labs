@@ -3,7 +3,7 @@ using MyMoney.Helpers.CustomAttributes;
 
 namespace MyMoney.Dtos;
 
-public class LoginUserDto
+public record LoginUserDto
 {
 	[Required]
 	[StringLength(150)]

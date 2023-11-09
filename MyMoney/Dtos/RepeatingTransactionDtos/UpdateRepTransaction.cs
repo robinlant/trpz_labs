@@ -5,7 +5,7 @@ using MyMoney.Helpers.CustomAttributes;
 
 namespace MyMoney.Dtos;
 
-public class UpdateRepTransactionDto
+public record UpdateRepTransactionDto
 {
 	[StringLength(50)]
 	[NoWhitespaceOnly]

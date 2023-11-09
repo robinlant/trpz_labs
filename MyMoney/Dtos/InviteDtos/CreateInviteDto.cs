@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyMoney.Dtos;
 
-public class CreateInviteDto
+public record CreateInviteDto
 {
 	[Required]
 	public int AccountId { get; set; }

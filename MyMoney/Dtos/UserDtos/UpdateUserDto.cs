@@ -3,7 +3,7 @@ using MyMoney.Helpers.CustomAttributes;
 
 namespace MyMoney.Dtos;
 
-public class UpdateUserDto
+public record UpdateUserDto
 {
 	[StringLength(150)]
 	[EmailAddress]

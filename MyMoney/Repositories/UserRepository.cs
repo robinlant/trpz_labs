@@ -44,4 +44,10 @@ public class UserRepository : IUserRepository
 		_dbContext.Users.Remove(user);
 		await _dbContext.SaveChangesAsync();
 	}
+
+	public async Task<User?> LoginAsync(string email, string password)
+	{
+		return await _dbContext.Users
+			.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
+	}
 }

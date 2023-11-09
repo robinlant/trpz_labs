@@ -5,7 +5,7 @@ using MyMoney.Helpers.CustomAttributes;
 
 namespace MyMoney.Dtos;
 
-public class CreateTransactionDto
+public record CreateTransactionDto
 {
 	[Required]
 	[StringLength(50)]

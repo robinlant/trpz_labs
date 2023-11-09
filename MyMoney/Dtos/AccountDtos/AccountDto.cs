@@ -3,7 +3,7 @@ using MyMoney.Helpers.CustomAttributes;
 
 namespace MyMoney.Dtos;
 
-public class AccountDto
+public record AccountDto
 {
 	[Required]
 	public int Id { get; set; }

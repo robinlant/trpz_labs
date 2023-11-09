@@ -3,7 +3,7 @@ using MyMoney.Entities;
 
 namespace MyMoney.Dtos;
 
-public class TransactionDto
+public record TransactionDto
 {
 	[Required]
 	public int Id { get; set; }
