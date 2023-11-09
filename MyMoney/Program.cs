@@ -1,16 +1,20 @@
-using Microsoft.EntityFrameworkCore;
-using MyMoney.Data;
+
+using MyMoney.Data.Extensions;
+using MyMoney.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("MoneyContext");
-if (string.IsNullOrEmpty(connectionString))
-{
-	throw new InvalidOperationException("The connection string 'MoneyContext' was not found.");
-}
-builder.Services.AddDbContext<MoneyContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddAuthentication("cookie").AddCookie("cookie");
+builder.Services.AddDbContext(builder.Configuration)
+	.AddRepositories();
+
 
 var app = builder.Build();
+
+await app.Services.InitializeDb();
+
+app.UseAuthentication();
+
+app.MapGetEndpoints();
 
 app.Run();

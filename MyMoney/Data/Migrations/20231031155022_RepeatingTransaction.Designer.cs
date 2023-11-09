@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMoney.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyMoney.Data.Migrations
 {
     [DbContext(typeof(MoneyContext))]
-    partial class MoneyContextModelSnapshot : ModelSnapshot
+    [Migration("20231031155022_RepeatingTransaction")]
+    partial class RepeatingTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +32,6 @@ namespace MyMoney.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -115,7 +115,7 @@ namespace MyMoney.Data.Migrations
                     b.Property<int?>("IncomeCategory")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("MadeById")
+                    b.Property<int>("MadeById")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -135,7 +135,7 @@ namespace MyMoney.Data.Migrations
 
                     b.HasIndex("MadeById");
 
-                    b.ToTable("RepeatingTransactions");
+                    b.ToTable("RepeatingTransaction");
                 });
 
             modelBuilder.Entity("MyMoney.Entities.Transaction", b =>
@@ -165,7 +165,7 @@ namespace MyMoney.Data.Migrations
                     b.Property<int?>("IncomeCategory")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("MadeById")
+                    b.Property<int>("MadeById")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -173,7 +173,7 @@ namespace MyMoney.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int?>("RepeatingTransactionId")
+                    b.Property<int>("RepeatingTransactionId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Type")
@@ -198,6 +198,9 @@ namespace MyMoney.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DateOfJoin")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("DefaultCurrency")
                         .IsRequired()
                         .HasMaxLength(3)
@@ -207,9 +210,6 @@ namespace MyMoney.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
-
-                    b.Property<DateTime>("JoinDate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -221,9 +221,6 @@ namespace MyMoney.Data.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -295,14 +292,16 @@ namespace MyMoney.Data.Migrations
             modelBuilder.Entity("MyMoney.Entities.RepeatingTransaction", b =>
                 {
                     b.HasOne("MyMoney.Entities.Account", "Account")
-                        .WithMany("RepeatingTransactions")
+                        .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MyMoney.Entities.User", "MadeBy")
                         .WithMany()
-                        .HasForeignKey("MadeById");
+                        .HasForeignKey("MadeById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Account");
 
@@ -318,14 +317,16 @@ namespace MyMoney.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("MyMoney.Entities.User", "MadeBy")
-                        .WithMany("Transactions")
+                        .WithMany()
                         .HasForeignKey("MadeById")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MyMoney.Entities.RepeatingTransaction", "RepeatingTransaction")
                         .WithMany("Transactions")
                         .HasForeignKey("RepeatingTransactionId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
 
                     b.Navigation("Account");
 
@@ -357,8 +358,6 @@ namespace MyMoney.Data.Migrations
                 {
                     b.Navigation("Invites");
 
-                    b.Navigation("RepeatingTransactions");
-
                     b.Navigation("Transactions");
 
                     b.Navigation("UserAccesses");
@@ -376,8 +375,6 @@ namespace MyMoney.Data.Migrations
                     b.Navigation("ReceivedInvites");
 
                     b.Navigation("SentInvites");
-
-                    b.Navigation("Transactions");
 
                     b.Navigation("UserAccesses");
                 });

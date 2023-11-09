@@ -1,0 +1,56 @@
+Users: (UserDtos)
+
+    POST /api/users/login (Login into an existing account)
+    POST /api/users (Create a new user)
+    PUT  /api/users/me (Update user)
+    GET  /api/users/me (Retrieve current user details)
+    DELETE /api/users/{userId} (Deletes an account)
+
+Accounts: (AccountDtos)
+
+    POST   /api/accounts (Create a new account)
+    GET    /api/accounts (Retrieve all accounts)
+    GET    /api/accounts/{accountId} (Retrieve specific account)
+    PUT    /api/accounts/{accountId} (Update specific account)
+    DELETE /api/accounts/{accountId} (Delete specific account)
+
+Invites: (InvitesDtos)
+
+    POST   /api/accounts/{accountId}/invites (Send an invite)
+    GET    /api/accounts/{accountId}/invites (Retrieve account related invites)
+    GET    /api/invites/{inviteId} (Retrieve specific invite)
+    GET    /api/invites (Retrieve all sent invites)
+    DELETE /api/invites/{inviteId} (Delete sent invite)
+    POST   /api/invites/{inviteId} (Accept or Decline an invite)
+
+Transactions: (TransactionDtos)
+
+    POST /api/accounts/{accountId}/transactions (Create a transaction)
+    GET /api/accounts/{accountId}/transactions (Retrieve all transactions)
+    GET /api/accounts/{accountId}/transactions/{transactionId} (Retrieve specific transaction)
+    PUT /api/accounts/{accountId}/transactions/{transactionId} (Update specific transaction)
+    DELETE /api/accounts/{accountId}/transactions/{transactionId} (Delete specific transaction)
+
+Repeating Transactions: (RepeatingTransactionDtos)
+
+    POST /api/accounts/{accountId}/repeating-transactions (Create a repeating transaction)
+    GET /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId}/transactions (Retrieve all transactions created by specific repeating transaction)
+    GET /api/accounts/{accountId}/repeating-transactions (Retrieve all repeating transactions)
+    GET /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Retrieve specific repeating transaction)
+    PUT /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Update specific repeating transaction)
+    DELETE /api/accounts/{accountId}/repeating-transactions/{repeatingTransactionId} (Delete specific repeating transaction)
+
+User Access: (UserAccessDtos)
+
+    GET /api/accounts/{accountId}/users (Retrieve all users with access to an account)
+    PUT /api/accounts/{accountId}/users/{userId} (Update user's role)
+    DELETE /api/accounts/{accountId}/users/{userId} (Revoke a user's access)
+
+Reports:
+
+    GET /api/accounts/{accountId}/reports/monthly (Get monthly summary)
+    GET /api/accounts/{accountId}/reports/yearly (Get yearly summary)
+
+Search:
+
+    GET /api/accounts/{accountId}/transactions/search?startDate=yyyy-mm-dd&endDate=yyyy-mm-dd&category={categoryId} (Search transactions)

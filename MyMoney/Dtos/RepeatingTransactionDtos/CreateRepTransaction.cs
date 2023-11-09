@@ -1,14 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MyMoney.Entities;
+using MyMoney.Helpers.CustomAttributes;
 
-namespace MyMoney.Entities;
+namespace MyMoney.Dtos;
 
-public class Transaction
+public record CreateRepTransactionDto
 {
-	public int Id { get; set; }
-
 	[Required]
 	[StringLength(50)]
+	[NoWhitespaceOnly]
 	public string Name { get; set; } = null!;
 
 	[Required]
@@ -16,7 +17,10 @@ public class Transaction
 	public decimal Amount { get; set; }
 
 	[Required]
-	public DateTime Date { get; set; }
+	public Frequency Frequency { get; set; }
+
+	[Required]
+	public DateTime StartDate { get; set; }
 
 	[Required]
 	public TransactionType Type { get; set; }
@@ -28,9 +32,5 @@ public class Transaction
 
 	public IncomeCategory? IncomeCategory { get; set; }
 
-
-	[Required]
-	public virtual Account Account { get; set; } = null!;
-	public virtual User? MadeBy { get; set; } // only if user gets deleted MadeBy => null
-	public virtual RepeatingTransaction? RepeatingTransaction { get; set; }
+	public DateTime? EndDate { get; set; }
 }
