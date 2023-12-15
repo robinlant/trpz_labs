@@ -1,0 +1,1 @@
+path_to_db = r'finance.db'
